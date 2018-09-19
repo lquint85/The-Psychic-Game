@@ -109,23 +109,23 @@
         <header class="header">
             <h1> The Psychic Game</h1>
             <p> Can You Guess The Letter I am Thinking Of?</p>
-            <p> Choose between a,s,d,f</p>
+            <p><strong>Choose from "A-Z"</strong></p>
             <br>
             <section class="row">
                 <div class="col-sm-4">
-                    <h2> Wins:</h2>
+                    <h2 id="Wins:"> Wins:</h2>
                 </div>
             </section>
             <br> <br>
             <section class="row">
                 <div class="col-sm-4">
-                    <h2> Losses:</h2>
+                    <h2 id="Losses:"> Losses:</h2>
                 </div>
             </section>
             <br><br>
             <section class="row">
                 <div class="col-sm-4">
-                    <h2> Guesses Left:</h2>
+                    <h2 id="Guesses Left:"> Guesses Left:</h2>
                 </div>
             </section>
             <br><br>
@@ -146,17 +146,23 @@
     <!-- add document .onkey-->
 
     <script type="text/javascript">
-        //variable declarations//
+
+        //variable declarations/id //
 
         var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
         var wins = 0;
         var losses = 0;
-        var guessesLeft = 3;
+        var guessesLeft = 5;
         var YourGuessessofar = [];
 
         //initialize html elements
         var userGuess = document.getElementById("userGuess");
         var computerGuess = document.getElementById("computerGuess");
+        var winsText = document.getElementById("Wins:");
+        var lossesText = document.getElementById("Losses:");
+        var guessesLeftText = document.getElementById("Guesses Left:");
+        var YourGuessesSoFarText = document.getElementById(" Guesses So Far:");
+
 
         //This Function is run whenever a user presses a key
         document.onkeyup = function (event) {
@@ -172,14 +178,36 @@
 
             console.log("yourGuessesSoFar:---" + userGuess);
 
+            winsText.textContent = "Wins:" + wins;
+            lossesText.textContent = "Losses:" + losses;
+            guessesLeftText.textContent = " Guesses Left:" 
+
+
+
             if (userGuess === computerGuess) {
-                wins++
+                wins++;
+                guessesLeft = 5;
+                YourGuessessofar = [];
                 console.log("Wins:----" + wins)
+                // alert("You Win")
             }
-            else if (userGuess !== computerGuess) {
-                losses++
+            if (userGuess !== computerGuess) {
+                losses--;
+                guessesLeft--;
+                YourGuessessofar.push(userGuess);
                 console.log("Losses:----" + losses)
+                alert("You Lose")
             }
+
+            if (guessesLeft < 1) {
+                console.log("Guesses Left:---" + guessesLeft)
+                alert("Its Over! Give it up");
+                guessesLeft = 5;
+                userGuess = [];
+                losses++;
+
+            }
+
 
         }
 
