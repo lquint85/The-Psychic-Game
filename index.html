@@ -33,7 +33,7 @@
             margin: 0px;
         }
 
-          .footer {
+        .footer {
             float: center;
             height: 100px;
             width: 500;
@@ -46,7 +46,7 @@
             margin: 234px -65px 0px -65px;
             font-family: Arial, Helvetica, sans-serif;
             color: bisque;
-          }
+        }
 
         .container {
             float: center;
@@ -109,6 +109,7 @@
         <header class="header">
             <h1> The Psychic Game</h1>
             <p> Can You Guess The Letter I am Thinking Of?</p>
+            <p> Choose between a,s,d,f</p>
             <br>
             <section class="row">
                 <div class="col-sm-4">
@@ -139,33 +140,55 @@
             </footer>
         </header>
 
-        </div>
+    </div>
 
-        <!-- Javascript here-->
-        <!-- add document .onkey-->
+    <!-- Javascript here-->
+    <!-- add document .onkey-->
 
-        <script type="text/javascript">
-            //variable declarations//
+    <script type="text/javascript">
+        //variable declarations//
 
-            // var Wins = "Wins";
-            // var Losses = "Losses";
-            // var guessesLeft = "guessesLeft";
-            // var yourGuessessofar = "Your Guesess So far";
+        var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        var wins = 0;
+        var losses = 0;
+        var guessesLeft = 3;
+        var YourGuessessofar = [];
 
-            //variable confirms and prompts//
+        //initialize html elements
+        var userGuess = document.getElementById("userGuess");
+        var computerGuess = document.getElementById("computerGuess");
 
-            // var oldEnough = confirm("Are you old enough for this site");
-            // var doYoulike = confirm("te gustan tacos de bistek?")
-            // var whatKindof = prompt("Qual tipo?"); {
+        //This Function is run whenever a user presses a key
+        document.onkeyup = function (event) {
 
-            // }
+            //Determines which key was pressed by user
+            var userGuess = event.key;
+
+            // Randomly chooses a choice from the options array. 
+            //This is the Computer's guess.
+            var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+            console.log("computerGuess:---" + computerGuess);
+
+            console.log("yourGuessesSoFar:---" + userGuess);
+
+            if (userGuess === computerGuess) {
+                wins++
+                console.log("Wins:----" + wins)
+            }
+            else if (userGuess !== computerGuess) {
+                losses++
+                console.log("Losses:----" + losses)
+            }
+
+        }
 
 
 
 
 
 
-        </script>
+    </script>
 
 </body>
 
